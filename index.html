@@ -17,6 +17,35 @@
         background-color: #fff; 
          font-family: "Outfit";
       }
+  .frosted-nav {
+    background: rgba(20, 20, 20, 0.55);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 1050;
+  }
+
+  /* White nav items */
+  .nav-white {
+    color: #fff !important;
+    font-weight: 500;
+  }
+  .nav-white:hover,
+  .nav-white:focus {
+    color: var(--yellow, #fdc315) !important;
+  }
+
+  /* CTA button styling */
+  .enquire-btn {
+    background: var(--gradient-cyan-purple);
+    border: 2px solid #f9f9f9;
+    color: white;
+    font-weight: 700;
+  }
+  .enquire-btn:hover {
+    opacity: 0.9;
+    color: #fff;
+  }
       /* Hero */
 /* ==== HERO — central yellow glow + dotted field ==== */
 .hero-kronix{
@@ -386,59 +415,45 @@ background:
   /* optional subtle lift; remove if not needed */
   filter: drop-shadow(0 10px 28px rgba(0,0,0,.35));
 }
-
     </style>
   </head>
   <body>
-    <!-- Navbar -->
- <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3" id="mainNavbar">
-        <div class="container-fluid px-4">
-            <!-- Logo -->
-            <a class="navbar-brand" href="#">
-            <img src="passio-logo.png" alt="Passio Logo" height="60" />
-            </a>
-            
-            <!-- Mobile toggle -->
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <i data-lucide="menu" class="text-white"></i>
-            </button>
-            
-            <!-- Navigation -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-  <ul class="navbar-nav mx-auto">
-    <li class="nav-item">
-      <a class="nav-link text-white-50 px-3" href="#problem">Problem</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-white-50 px-3" href="#value">Value</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-white-50 px-3" href="#works">Works</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-white-50 px-3" href="#services">Services</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-white-50 px-3" href="#how">How It Works</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-white-50 px-3" href="#pricing">Pricing</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-white-50 px-3" href="#testimonials">Testimonials</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-white-50 px-3" href="#faq">FAQ</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-white-50 px-3" href="#contact">Contact</a>
-    </li>
-  </ul>
-  <a href="#contact" class="btn btn-primary px-4 py-2 rounded-pill" style="background: var(--gradient-cyan-purple); border-radius:none; border-color: #F9F9F9; border-width: 2px; color: white;">
-    <b>Enquire Now</b>
-  </a>
-</div>
-    </nav>
+<!-- Navbar -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top frosted-nav py-3" id="mainNavbar">
+  <div class="container-fluid px-4">
+    <!-- Logo -->
+    <a class="navbar-brand" href="#">
+      <img src="passio-logo.png" alt="Passio Logo" height="60" />
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <i data-lucide="menu" class="text-white"></i>
+    </button>
+
+    <!-- Navigation -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link nav-white px-3" href="#problem">Problem</a></li>
+        <li class="nav-item"><a class="nav-link nav-white px-3" href="#value">Value</a></li>
+        <li class="nav-item"><a class="nav-link nav-white px-3" href="#works">Works</a></li>
+        <li class="nav-item"><a class="nav-link nav-white px-3" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link nav-white px-3" href="#how">How It Works</a></li>
+        <li class="nav-item"><a class="nav-link nav-white px-3" href="#pricing">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link nav-white px-3" href="#testimonials">Testimonials</a></li>
+        <li class="nav-item"><a class="nav-link nav-white px-3" href="#faq">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link nav-white px-3" href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- CTA button -->
+      <a href="#contact" class="btn btn-primary px-4 py-2 rounded-pill enquire-btn">
+        <b>Enquire Now</b>
+      </a>
+    </div>
+  </div>
+</nav>
+
     <!-- Hero -->
   <section class="hero-kronix">
   <div class="container text-center position-relative">
