@@ -61,26 +61,22 @@
   align-items: center;
   color: var(--hc-text);
   overflow: hidden;
-  padding-top: 7rem;      /* for fixed navbar */
+  padding-top: 7rem;      /* room for fixed navbar */
   padding-bottom: 5rem;
 
   /* Base dark + warm glow stack */
   background:
-    /* strong warm glow in the middle */
     radial-gradient(560px 320px at 50% 40%,
-      /* rgba(255,202,5,.32) 50px, */
       rgba(255,202,5,.22) 0%,
       rgba(255,202,5,.10) 20px,
       rgba(255,202,5,0)   72%),
-    /* softer large halo from top center */
     radial-gradient(1100px 520px at 50% -10%,
       rgba(255,202,5,.14),
       rgba(255,202,5,0) 30%),
-    /* deep base */
     linear-gradient(180deg,#11110e 0%, #0e0e0b 45%, #0b0b09 100%);
 }
 
-/* soft vignette to darken edges slightly */
+/* soft vignette around edges */
 .hero-kronix::before{
   content:"";
   position:absolute; inset:0;
@@ -91,60 +87,140 @@
   pointer-events:none;
 }
 
-/* dotted field */
+/* (optional) dotted field hint */
 .hero-kronix::after{
   content:"";
   position:absolute; inset:0;
-  /* background-image: radial-gradient(rgba(255,202,5,.75) 1px, transparent 1px); */
   background-size: 18px 18px;
-  opacity:.06;               /* very subtle like the reference */
+  opacity:.06;
   pointer-events:none;
 }
 
-/* headline tuning */
+/* Headlines */
 .hero-title{
   line-height: 1.08;
   letter-spacing: -0.015em;
+  font-weight: 800;
 }
-.hero-title .accent{ color: var(--hc-accent); text-shadow: 0 0 12px rgba(255,202,5,.12); }
+.hero-title .accent{
+  color: var(--hc-accent);
+  text-shadow: 0 0 12px rgba(255,202,5,.12);
+}
 
-/* keep your sparkle positions */
-.sparkle{ position:absolute; width:18px; height:18px; opacity:.6; color:var(--hc-accent); }
-.sparkle i{ font-size:18px; }
-.sparkle.s1{ top:22%; left:16%; transform:rotate(8deg); }
-.sparkle.s2{ top:34%; right:18%; transform:rotate(-12deg); }
-.sparkle.s3{ bottom:18%; left:24%; transform:scale(.9) rotate(6deg); }
+/* Subcopy */
+.hero-sub{ color: rgba(246,246,246,.78); }
 
-/* buttons + trusted line (unchanged) */
-.btn-accent{ background-color:var(--hc-accent); color:#0b0b09; border:none; }
+/* Button + “trusted by” */
+.btn-accent{ background-color: var(--hc-accent); color:#0b0b09; border:none; }
 .btn-accent:hover{ filter:brightness(.95); transform:translateY(-1px); }
+
 .trusted-wrap{ color:rgba(246,246,246,.8); letter-spacing:.14em; }
 .trusted-line{ width:74px; height:2px; background:var(--hc-accent); margin:0 12px; opacity:.9; }
 
-/* sparkles */
-.sparkle{
-  position:absolute; width:18px; height:18px; opacity:.6; color:var(--hc-accent);
+/* ===================================================================== */
+/*                      HERO STARS — IMAGE VERSION                        */
+/* ===================================================================== */
+/* Set your star image here (PNG/SVG). Update path/name if needed. */
+:root { --hero-star-url: url("Star.png"); }
+
+/* Replace icon with the provided image and pin the stars precisely */
+.hero-kronix .sparkle{
+  position:absolute;
+  display:block;
+  background: var(--hero-star-url) no-repeat center / contain;
+  width: clamp(14px, 1.5vw, 18px);   /* base size for small stars */
+  aspect-ratio: 1;
+  opacity:.95;
+  filter: drop-shadow(0 2px 0 rgba(0,0,0,.08));
+  pointer-events:none;
+  color: transparent;                 /* just in case */
 }
-.sparkle i{ font-size:18px; }
-.sparkle.s1{ top:22%; left:16%; transform:rotate(8deg); }
-.sparkle.s2{ top:34%; right:18%; transform:rotate(-12deg); }
-.sparkle.s3{ bottom:18%; left:24%; transform:scale(.9) rotate(6deg); }
+.hero-kronix .sparkle i{ display:none !important; } /* hide the <i> icon */
 
-.hero-eyebrow{
-  background:var(--hc-accent);
-  color:var(--hc-dark);
+/* Positions tuned to match the reference layout */
+.hero-kronix .sparkle.s1{            /* left small star */
+  top: 16vh;
+  left: 20vw;
+  transform: rotate(8deg);
+}
+.hero-kronix .sparkle.s2{            /* top-right large star */
+  top: 8vh;
+  right: 22vw;
+  width: clamp(48px, 6vw, 84px);     /* larger star */
+  transform: rotate(-8deg);
+}
+.hero-kronix .sparkle.s3{            /* tiny star lower-mid */
+  top: 54vh;
+  left: 57vw;
+  width: clamp(10px, 1.2vw, 14px);
+  transform: rotate(6deg) scale(.95);
 }
 
-.hero-title{
-  line-height:1.1;
-  letter-spacing: -0.02em;
-      font-weight: 800;
+/* Fine-tune absolute positions on very wide desktops (keeps accuracy) */
+@media (min-width: 1400px){
+  .hero-kronix .sparkle.s1{ top: 160px; left: 360px; }
+  .hero-kronix .sparkle.s2{ top: 90px;  right: 320px; width: 76px; }
+  .hero-kronix .sparkle.s3{ top: 430px; left: 860px; width: 14px; }
 }
-.hero-title .accent{ color:var(--hc-accent); }
 
-/* subcopy */
-.hero-sub{ color:rgba(246,246,246,.78); }
+/* Compact view tweaks so stars remain in visually same spots */
+@media (max-width: 991.98px){
+  .hero-kronix .sparkle.s1{ top: 18vh; left: 12vw; }
+  .hero-kronix .sparkle.s2{ top: 10vh; right: 10vw; width: 56px; }
+  .hero-kronix .sparkle.s3{ top: 56vh; left: 60vw; }
+}
 
+.hero-kronix{
+  /* S1 – left star */
+  --s1-size: 18px;
+  --s1-top: 400px;
+  --s1-left: 20vw;
+  --s1-rotate: 8deg;
+
+  /* S2 – big star (top-right) */
+  --s2-size: 76px;
+  --s2-top: 55px;
+  --s2-right: 280px;
+  --s2-rotate: -8deg;
+
+  /* S3 – tiny star */
+  --s3-size: 25px;
+  --s3-top: 58vh;
+  --s3-left: 57vw;
+  --s3-rotate: 6deg;
+}
+
+.hero-kronix .sparkle{ aspect-ratio:1; }
+
+.hero-kronix .sparkle.s1{
+  width: var(--s1-size);
+  top: var(--s1-top);
+  left: var(--s1-left);
+  transform: rotate(var(--s1-rotate));
+}
+
+.hero-kronix .sparkle.s2{
+  width: var(--s2-size);
+  top: var(--s2-top);
+  right: var(--s2-right);
+  transform: rotate(var(--s2-rotate));
+}
+
+.hero-kronix .sparkle.s3{
+  width: var(--s3-size);
+  top: var(--s3-top);
+  left: var(--s3-left);
+  transform: rotate(var(--s3-rotate));
+}
+
+/* Optional: mobile fine-tuning */
+@media (max-width: 992px){
+  .hero-kronix{
+    --s1-size: 16px; --s1-left: 12vw; --s1-top: 18vh;
+    --s2-size: 56px; --s2-right: 10vw; --s2-top: 10vh;
+    --s3-size: 12px; --s3-left: 60vw; --s3-top: 56vh;
+  }
+}
 .section-how {
   position: relative;
 background:
@@ -386,7 +462,32 @@ background:
     .hs-btn{ width: 38px; height: 38px; }
     .tile{ height: clamp(180px, 34vh, 280px); }
   }
+/* how far to drop the left-side texts on desktop */
+:root{
+  --value-left-nudge: 56px;  /* tweak this number to taste */
+}
 
+/* Desktop/tablet: move ONLY the strapline + left column down */
+@media (min-width: 992px){
+  /* strapline (“We combine cutting-edge AI with over …”) */
+  #value .value-strap{
+    position: relative;
+    top: clamp(8px, 3vw, var(--value-left-nudge));
+  }
+  /* the first (left) column inside the two-column row */
+  #value .row.align-items-center > .col-lg-6:first-child{
+    position: relative;
+    top: clamp(8px, 3vw, var(--value-left-nudge));
+  }
+}
+
+/* On smaller screens (stacked), reset the nudge */
+@media (max-width: 991.98px){
+  #value .value-strap,
+  #value .row.align-items-center > .col-lg-6:first-child{
+    top: 0;
+  }
+}
  .value-banner{
     background: var(--hc-accent);
     color:#080201;
@@ -514,6 +615,16 @@ background:
   );
   opacity: .7;
 }
+/* nudge the left-side text down a bit */
+.value-left{
+  margin-top: 500px;
+}
+
+/* don’t push it on small screens */
+@media (max-width: 991.98px){
+  .value-left{ margin-top: clamp(8px, 2vw, 20px); }
+}
+
 
 
 
@@ -959,6 +1070,19 @@ background:
 }
 
 
+
+.section-heading{
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-size: clamp(2rem, 6vw, 3.75rem);
+  margin: .25rem 0 1rem;
+  color: #f6f6f6; /* default light text on dark bg */
+}
+/* .section-heading .accent{
+  color: var(--hc-accent);
+} */
+
     </style>
   </head>
   <body>
@@ -1009,7 +1133,7 @@ background:
 
     <!-- Hero -->
   <section class="hero-kronix">
-  <div class="container text-center position-relative">
+  <div class="container text-center position-relative" style="padding-top: 95px;">
     <!-- small sparkle accents -->
     <span class="sparkle s1"><i class="bi bi-star-fill"></i></span>
     <span class="sparkle s2"><i class="bi bi-star-fill"></i></span>
@@ -1042,29 +1166,84 @@ background:
         </div>
 
         <!-- brand strip -->
-<!-- <div class="brand-strip mx-auto" style="max-width: 1120px;">
-  <div class="brand-chips">
-    <div class="brand-chip"><span class="brand-icon">🧊</span>Layers</div>
-    <div class="brand-chip"><span class="brand-icon">Q</span>Quotient</div>
-    <div class="brand-chip"><span class="brand-icon">◯</span>Circooles</div>
-    <div class="brand-chip"><span class="brand-icon">⏳</span>Hourglass</div>
-    <div class="brand-chip"><span class="brand-icon">⌘R</span>Command+R</div>
-  </div>
-</div> -->
-<div class="brand-strip mx-auto" style="max-width:1120px;">
+<div class="brand-strip mx-auto" style="max-width:700px;">
   <ul class="brand-logos">
     <!-- Replace src/alt with your files & names -->
     <li><img src="Ajmal Bismi.jpg"  alt="Ajmalbismi"></li>
     <li><img src="Zafco.jpg"  alt="Zafco"></li>
     <li><img src="Al Madina.jpg"  alt="Al Madina"></li>
     <li><img src="A-Map.jpg"  alt="A-Map"></li>
-      <!-- <li><img src="Smart Bazaar.jpg"  alt="Smart Bazaar"></li> -->
+    <li><img src="Smart Bazaar.jpg"  alt="Smart Bazaar"></li>
+    <li><img src="EasyCare Logo_Final-02.jpg"  alt="Smart Bazaar"></li>
+    <li><img src="EasyStore Logo_Final-02.jpg"  alt="Smart Bazaar"></li>
   </ul>
 </div>
       </div>
     </div>
   </div>
 </section>
+<style>
+/* ─── Brand strip stays the same ───────────────────────── */
+/* Tweakable knobs */
+:root{
+  --logo-h: 36px;           /* logo height on desktop (was 44px) */
+  --logo-gap: 50px;         /* space between logos */
+  --strip-pad-x: 18px;      /* left/right padding inside the strip */
+  --strip-pad-y: 12px;      /* top/bottom padding inside the strip */
+}
+
+/* Strip stays same width; we only trim padding a bit */
+.brand-strip{
+  background:#2a2a2a;
+  border-radius:28px;
+  padding: var(--strip-pad-y) var(--strip-pad-x);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 12px 30px rgba(0,0,0,.35);
+  overflow: hidden;         /* keeps it tidy; no scroll bar */
+}
+
+/* One straight line, minimal gap, no wrapping */
+.brand-logos{
+  display:flex;
+  align-items:center;
+  justify-content:center;   /* center the row */
+  gap: var(--logo-gap);
+  list-style:none;
+  padding:0;
+  margin:0;
+  flex-wrap:nowrap;         /* single line */
+}
+
+/* No extra space from list items; allow them to shrink */
+.brand-logos li{
+  min-width:0;
+  flex:0 1 auto;
+  height: calc(var(--logo-h) + 16px);  /* gives a little breathing room vertically */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0; margin:0;                  /* kill any defaults */
+}
+
+/* Normalize all logos so they can fit within the same line */
+.brand-logos img{
+  display:block;
+  max-height: var(--logo-h);
+  width:300px;
+  object-fit: contain;
+}
+
+/* If you want a touch tighter on smaller screens */
+@media (max-width: 1200px){
+  :root{ --logo-h: 34px; --logo-gap: 8px; }
+}
+@media (max-width: 992px){
+  :root{ --logo-h: 32px; --logo-gap: 8px; }
+}
+
+
+</style>
 
 <section id="how-we-work" class="section-how py-5">
   <div class="container py-5">
@@ -1149,7 +1328,7 @@ background:
      WORKS — MASONRY GALLERY
      ========================= -->
 <section id="works" class="masonry-section py-5">
-  <div class="container px-3 px-md-4">
+  <div class="container-fluid px-3 px-md-4">
     <div class="masonry-grid" id="masonryGrid" data-speed="80">
       <a class="masonry-item">
         <div class="masonry-card">
@@ -1304,13 +1483,13 @@ background:
   <div class="container">
 
     <!-- Strapline -->
-    <p class="value-strap">
+    <p class="value-strap ">
       We combine cutting-edge AI with over
     </p>
 
     <!-- Value copy + Brain -->
     <div class="row align-items-center g-5 mb-5">
-      <div class="col-lg-6">
+      <div class="col-lg-6 ">
 
         <h2 class="value-big">
           <span>13 years of</span><br>
@@ -1336,8 +1515,11 @@ background:
       </div>
     </div>
 
-        <div class="text-center mb-3">
-          <h3 class="fw-bold display-6 mb-2" style="color:var(--hc-accent)">Benefits</h3>
+        <div class="text-center mb-3" style="padding-top: 100px;">
+          <!-- <h3 class="fw-bold display-6 mb-2" style="color:var(--hc-accent)">Benefits</h3> -->
+           <h2 class="section-heading"  style="color:var(--hc-accent)">
+  <span class="accent">Benefits</span>
+</h2>
           <p class="fs-4 text-on-dark"  style="color: white;">Save Time. Reduce Costs. Get Real Results.</p>
         </div>
         <div class="row g-4">
@@ -1433,9 +1615,12 @@ background:
 <section id="social" class="py-5" style="background:#080201">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 class="fw-bold display-6" style="color:white">
+      <!-- <h2 class="fw-bold display-6" style="color:white">
         Trusted by <span class="accent">leading brands</span><br>across UAE & India
-      </h2>
+      </h2> -->
+      <h2 class="section-heading light">
+  Trusted by <span class="accent">leading brands</span><br>across UAE &amp; India
+</h2>
     </div>
 
     <!-- brands -->
@@ -1543,7 +1728,8 @@ background:
     <section id="works" class="py-5" style="background:#080201">
       <div class="container">
         <div class="text-center mb-4">
-          <h2 class="fw-bold display-6" style="color:#f6f6f6"><span class="accent">Featured Works</span></h2>
+          <!-- <h2 class="fw-bold display-6" style="color:#f6f6f6"><span class="accent">Featured Works</span></h2> -->
+           <h2 class="section-heading"><span class="accent">Featured Works</span></h2>
           <p style="color:#f6f6f6">Works That Drive Results Across Industries</p>
         </div>
         <div class="row g-4">
@@ -1592,9 +1778,12 @@ background:
 <section id="services" class="py-5" style="background:#0B0B08">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 class="fw-bold display-6 mb-2" style="color:#ffffff">
+      <!-- <h2 class="fw-bold display-6 mb-2" style="color:#ffffff">
         <span>Services</span>
-      </h2>
+      </h2> -->
+      <h2 class="section-heading light mb-2">
+  <span>Services</span>
+</h2>
     </div>
 
     <!-- 3 per row on lg, 2 on md, 1 on sm -->
@@ -1672,7 +1861,8 @@ background:
     <section id="how" class="py-5" style="background:#080201">
       <div class="container">
         <div class="text-center mb-4">
-          <h2 class="fw-bold display-6" style="color:#f6f6f6"><span class="accent">How It Works</span></h2>
+          <!-- <h2 class="fw-bold display-6" style="color:#f6f6f6"><span class="accent">How It Works</span></h2> -->
+           <h2 class="section-heading"><span class="accent">How It Works</span></h2>
           <p class="text-on-dark" style="color: white;">Getting started is simple!</p>
         </div>
         <div class="row g-4 mb-3">
@@ -1695,9 +1885,9 @@ background:
             <p class="text-on-dark mb-0" style="opacity:.9; color: white;">More online presence, more engagement, more business</p>
           </div>
         </div>
-        <div class="text-center">
+        <!-- <div class="text-center">
           <a href="#pricing" class="btn btn-accent btn-lg rounded-pill">SEE PACKAGES BELOW</a>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -1705,7 +1895,10 @@ background:
     <section id="pricing" class="py-5" style="background:#f6f6f6">
       <div class="container">
         <div class="text-center mb-5">
-          <h2 class="fw-bold display-6" style="color:#080201">Choose a plan that suits your <span class="accent">Dubai business</span></h2>
+          <!-- <h2 class="fw-bold display-6" style="color:#080201">Choose a plan that suits your <span class="accent">Dubai business</span></h2> -->
+           <h2 class="section-heading dark" style="color:#080201">
+  Choose a plan that suits your <span class="accent">Dubai business</span>
+</h2>
         </div>
         <div class="row g-4 mb-4">
           <!-- Starter -->
@@ -1795,61 +1988,160 @@ background:
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials" class="py-5" style="background:#080201">
-      <div class="container">
-        <div class="text-center mb-4">
-          <h2 class="fw-bold display-6" style="color:#f6f6f6"><span class="accent">Client Testimonials</span></h2>
-        </div>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="p-4 rounded-4" style="background:#f6f6f6">
-              <div class="d-flex gap-1 mb-3 text-warning">
-                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              </div>
-              <p class="mb-4" style="color:#080201">"Passio transformed our online presence completely. Their AI-powered approach combined with their expertise delivered results we never thought possible. Our social media engagement increased by 400% in just 3 months!"</p>
-              <div class="d-flex align-items-center gap-3">
-                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:48px;height:48px;background:var(--hc-accent)"><span style="color:#080201">DTS</span></div>
-                <div>
-                  <div class="fw-bold" style="color:#080201">Dubai Tech Solutions</div>
-                  <div class="small" style="color:#080201;opacity:.7">Ahmed Al-Rashid, CEO</div>
-                </div>
-              </div>
-            </div>
+<!-- Testimonials -->
+<section class="t-section">
+  <div class="t-wrap">
+    <div class="text-center mb-4">
+      <h2 class="section-heading" style="color:#f6f6f6; padding-bottom:50px;">
+        <span class="accent">Client Testimonials</span>
+      </h2>
+    </div>
+
+    <ul class="t-reel">
+      <!-- Set vertical offset per card with --y (negative = up, positive = down) -->
+      <li class="t-card" style="--y:-18px">
+        <p class="t-text">
+          "Passio transformed our online presence completely. Their AI-powered
+          approach combined with their expertise delivered results we never
+          thought possible. Our social media engagement increased by 400% in
+          just 3 months!"
+        </p>
+        <footer class="t-foot">
+          <img class="t-avatar" src="https://i.pravatar.cc/72?img=12" alt="Diana Loreza">
+          <div class="t-author">
+            <strong>Diana Loreza</strong>
+            <small>Director of GYMSTORY</small>
           </div>
-          <div class="col-md-4">
-            <div class="p-4 rounded-4" style="background:#f6f6f6">
-              <div class="d-flex gap-1 mb-3 text-warning">
-                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              </div>
-              <p class="mb-4" style="color:#080201">"Working with Passio has been a game-changer for our brand. Their video content strategy helped us reach a younger demographic and increase bookings by 60%. The team truly understands the Dubai market."</p>
-              <div class="d-flex align-items-center gap-3">
-                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:48px;height:48px;background:var(--hc-accent)"><span style="color:#080201">ELH</span></div>
-                <div>
-                  <div class="fw-bold" style="color:#080201">Emirates Luxury Hotels</div>
-                  <div class="small" style="color:#080201;opacity:.7">Sarah Johnson, Marketing Director</div>
-                </div>
-              </div>
-            </div>
+        </footer>
+      </li>
+
+      <li class="t-card" style="--y:54px">
+        <p class="t-text">
+          "Working with Passio has been a game-changer for our brand. Their
+          video content strategy helped us reach a younger demographic and
+          increase bookings by 60%. The team truly understands the Dubai
+          market."
+        </p>
+        <footer class="t-foot">
+          <img class="t-avatar" src="https://i.pravatar.cc/72?img=21" alt="Diana Loreza">
+          <div class="t-author">
+            <strong>Diana Loreza</strong>
+            <small>Director of GYMSTORY</small>
           </div>
-          <div class="col-md-4">
-            <div class="p-4 rounded-4" style="background:#f6f6f6">
-              <div class="d-flex gap-1 mb-3 text-warning">
-                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              </div>
-              <p class="mb-4" style="color:#080201">"The professionalism and creativity that Passio brings to every project is outstanding. They don't just create content, they create experiences that resonate with our audience. Highly recommended!"</p>
-              <div class="d-flex align-items-center gap-3">
-                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:48px;height:48px;background:var(--hc-accent)"><span style="color:#080201">FFG</span></div>
-                <div>
-                  <div class="fw-bold" style="color:#080201">Future Finance Group</div>
-                  <div class="small" style="color:#080201;opacity:.7">Raj Patel, Head of Digital</div>
-                </div>
-              </div>
-            </div>
+        </footer>
+      </li>
+
+      <li class="t-card" style="--y:-58px">
+        <p class="t-text">
+          "The professionalism and creativity that Passio brings to every
+          project is outstanding. They don't just create content, they create
+          experiences that resonate with our audience. Highly recommended!"
+        </p>
+        <footer class="t-foot">
+          <img class="t-avatar" src="https://i.pravatar.cc/72?img=32" alt="Diana Loreza">
+          <div class="t-author">
+            <strong>Diana Loreza</strong>
+            <small>Director of GYMSTORY</small>
           </div>
-        </div>
-      </div>
-    </section>
+        </footer>
+      </li>
+
+      <li class="t-card" style="--y:56px">
+        <p class="t-text">
+          I recently hired Ideeperl for a custom web development project and
+          couldn’t be happier with the results. The team was able to bring my
+          unique ideas to life and create a website that truly stands out.
+        </p>
+        <footer class="t-foot">
+          <img class="t-avatar" src="https://i.pravatar.cc/72?img=5" alt="Diana Loreza">
+          <div class="t-author">
+            <strong>Diana Loreza</strong>
+            <small>Director of GYMSTORY</small>
+          </div>
+        </footer>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+/* Section shell — tall enough so up/down offsets never clip */
+.t-section{
+  background:#080201;
+  padding-top:50px;
+  padding-bottom:50px;
+}
+
+/* Fluid container */
+.t-wrap{
+  width:100%;
+  margin-inline:auto;
+  padding-inline:clamp(16px, 4vw, 48px);
+  position:relative;
+}
+
+/* Reel (single horizontal row); extra block padding so translated cards fit */
+.t-reel{
+  display:flex;
+  gap:clamp(18px, 3.4vw, 32px);
+  list-style:none;
+  margin:0;
+  padding-block:clamp(36px, 4vw, 60px); /* cushion for --y offsets */
+  padding-inline:0;
+  overflow-x:auto;            /* horizontal scroll if needed */
+  overflow-y:visible;         /* allow up/down translates to show fully */
+  scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;
+}
+.t-reel::-webkit-scrollbar{ height:0; } /* hide horizontal bar */
+
+/* Card */
+.t-card{
+  width:clamp(260px, 26vw, 320px);
+  background:#ffffff;
+  color:#0e0e0b;
+  border-radius:22px;
+  padding:22px 20px;
+  box-shadow:0 10px 28px rgba(0,0,0,.22);
+  scroll-snap-align:start;
+  transform:translateY(var(--y, 0)); /* manual per-card offset */
+  transition:transform .25s ease, box-shadow .25s ease;
+  will-change:transform;
+}
+.t-card:hover{ box-shadow:0 14px 40px rgba(0,0,0,.32); }
+
+/* Content bits */
+.t-text{ font-size:.98rem; line-height:1.7; color:#242424; margin:0 0 16px; }
+.t-foot{ display:flex; align-items:center; gap:10px; margin-top:auto; }
+.t-avatar{ width:40px; height:40px; border-radius:50%; object-fit:cover; }
+.t-author strong{ display:block; font-size:.97rem; }
+.t-author small{ color:#666; }
+
+/* ——— Responsive: show ONE card at a time on tablets & phones ——— */
+@media (max-width: 1024px){
+  .t-card{
+    width:min(88vw, 520px);   /* single card fills the viewport nicely */
+    transform:none;           /* remove stagger so nothing clips */
+    scroll-snap-align:center; /* center active card */
+    padding:18px 18px;
+  }
+  .t-reel{
+    gap:16px;
+    padding-inline:16px;      /* edge breathing room */
+    padding-block:16px;
+    scroll-snap-type:x mandatory;
+    scroll-padding-inline:16px;
+  }
+}
+
+/* Tiny phones: give a touch more width */
+@media (max-width: 380px){
+  .t-card{ width:92vw; }
+}
+</style>
+
+
+
 
     <!-- FAQ -->
 <!-- FAQ — dark, full-width, no boxes -->
