@@ -1522,32 +1522,85 @@ background:
 </h2>
           <p class="fs-4 text-on-dark"  style="color: white;">Save Time. Reduce Costs. Get Real Results.</p>
         </div>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="text-center p-4 rounded-4" style="background:#f6f6f6">
-              <div class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width:64px;height:64px;background:var(--hc-accent)"><i class="bi bi-clock" style="color:#080201"></i></div>
-              <h5 class="fw-bold" style="color:#080201">Save Time</h5>
-              <p class="mb-0" style="color:#080201">Focus on your business while we handle your marketing</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="text-center p-4 rounded-4" style="background:#f6f6f6">
-              <div class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width:64px;height:64px;background:var(--hc-accent)"><i class="bi bi-cash-coin" style="color:#080201"></i></div>
-              <h5 class="fw-bold" style="color:#080201">Reduce Costs</h5>
-              <p class="mb-0" style="color:#080201">More cost-effective than hiring a full marketing team</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="text-center p-4 rounded-4" style="background:#f6f6f6">
-              <div class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width:64px;height:64px;background:var(--hc-accent)"><i class="bi bi-bullseye" style="color:#080201"></i></div>
-              <h5 class="fw-bold" style="color:#080201">Get Real Results</h5>
-              <p class="mb-0" style="color:#080201">Data-driven strategies that actually grow your business</p>
-            </div>
-          </div>
-        </div>
+<div class="row gy-4 gx-4">
+  <div class="col-md-4">
+    <div class="benefit-card text-center">
+      <img src="Benefits_savetime.png" style="width: 50%;">
+      <h4 class="benefit-title">Save Time</h4>
+      <p class="benefit-desc">Focus on your business while we handle your marketing</p>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="benefit-card text-center">
+      <img src="Benefits_reducecost.png"  style="width: 50%;">
+      <h4 class="benefit-title">Reduce Costs</h4>
+      <p class="benefit-desc">More cost-effective than hiring a full marketing team</p>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="benefit-card text-center" >
+      <img src="Benefits_results.png"style="width: 50%;">
+      <h4 class="benefit-title">Get Real Results</h4>
+      <p class="benefit-desc">Data-driven strategies that actually grow your business</p>
+    </div>
+  </div>
+</div>
+
       </div>
     </section>
+<style>
+  /* Bigger, roomier benefit cards */
+.benefit-card{
+  background:#f6f6f6;
+  border-radius:28px;
+  padding: clamp(28px, 3.2vw, 56px);
+  min-height: clamp(260px, 28vw, 360px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+}
 
+/* Large accent icon */
+.benefit-icon{
+  width: clamp(72px, 6vw, 104px);
+  height: clamp(72px, 6vw, 104px);
+  border-radius:50%;
+  background: var(--hc-accent);
+  display:grid;
+  place-items:center;
+  margin-bottom: clamp(14px, 2vw, 22px);
+}
+.benefit-icon i{
+  font-size: clamp(28px, 3.2vw, 40px);
+  color:#080201;
+}
+
+/* Bigger headings and comfy body text */
+.benefit-title{
+  color:#080201;
+  font-weight:800;
+  font-size: clamp(1.25rem, 1.8vw, 1.9rem);
+  margin-bottom: .35rem;
+}
+
+.benefit-desc{
+  color:#080201;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height:1.6;
+  max-width: 46ch;
+  margin: 0 auto;
+}
+
+/* Give them even more presence on very large displays */
+@media (min-width: 1400px){
+  .benefit-card{ min-height: 400px; padding: 72px 56px; }
+  .benefit-icon{ width:110px; height:110px; }
+}
+
+</style>
     <!-- =========================
      RESULTS — WHAT CLIENTS ACHIEVE
      ========================= -->
@@ -1867,20 +1920,23 @@ background:
         </div>
         <div class="row g-4 mb-3">
           <div class="col-md-4 text-center">
-            <div class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center fw-bold" style="width:80px;height:80px;background:var(--hc-accent);color:white">01</div>
-            <i class="bi bi-check-circle fs-1" style="color:white"></i>
+            <!-- <div class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center fw-bold" style="width:40px;height:40px;background:var(--hc-accent);color:black">01</div> -->
+             <img src="How it works plans.png" style="width: 50%;">
+            <!-- <i class="bi bi-check-circle fs-1" style="color:white"></i> -->
             <h5 class="text-on-dark fw-bold mt-3" style="color: white;">Choose Your Plan</h5>
             <p class="text-on-dark mb-0" style="opacity:.9; color: white;">Select the package that fits your goals</p>
           </div>
           <div class="col-md-4 text-center">
-            <div class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center fw-bold" style="width:80px;height:80px;background:var(--hc-accent);color:white">02</div>
-            <i class="bi bi-gear fs-1" style="color:white"></i>
+            <!-- <div class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center fw-bold" style="width:40px;height:40px;background:var(--hc-accent);color:black">02</div>
+            <i class="bi bi-gear fs-1" style="color:white"></i> -->
+            <img src="How it works create and manage.png" style="width: 50%;">
             <h5 class="text-on-dark fw-bold mt-3" style="color: white;">We Create & Manage</h5>
             <p class="text-on-dark mb-0" style="opacity:.9;color: white;">AI-powered content, tailored for your business</p>
           </div>
           <div class="col-md-4 text-center">
-            <div class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center fw-bold" style="width:80px;height:80px;background:var(--hc-accent);color:white">03</div>
-            <i class="bi bi-graph-up-arrow fs-1" style="color:white"></i>
+            <!-- <div class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center fw-bold" style="width:40px;height:40px;background:var(--hc-accent);color:black">03</div>
+            <i class="bi bi-graph-up-arrow fs-1" style="color:white"></i> -->
+            <img src="How it works growth.png" style="width: 50%;">
             <h5 class="text-on-dark fw-bold mt-3" style="color: white;" >Watch Your Brand Grow</h5>
             <p class="text-on-dark mb-0" style="opacity:.9; color: white;">More online presence, more engagement, more business</p>
           </div>
