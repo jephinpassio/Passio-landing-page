@@ -2138,6 +2138,20 @@ background:
 @media (max-width: 380px){
   .t-card{ width:92vw; }
 }
+@media (min-width: 1025px){
+  .t-reel{
+    justify-content: center;     /* center the row if it doesn't overflow */
+    margin-inline: auto;         /* extra safety to keep it centered */
+  }
+}
+@media (min-width: 1280px){
+  .t-reel{
+    max-width: 1200px;     /* pick a width that suits your layout */
+    margin-inline: auto;   /* center the whole strip */
+    justify-content: center;
+    overflow-x: visible;   /* disable horizontal scroll so centering works */
+  }
+}
 </style>
 
 
